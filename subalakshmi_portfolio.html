@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subalakshmi S — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-body   { font-family: 'Inter', sans-serif; }
+    .font-mono   { font-family: 'Space Grotesk', monospace; }
+
+    .glass-nav { backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); }
+    .fade-edges { mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
+
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { animation: marquee 45s linear infinite; }
+    .marquee-container:hover .animate-marquee { animation-play-state: paused; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+
+    .premium-text-gradient { background: linear-gradient(135deg, #2E2800 10%, #574C00 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .dark .premium-text-gradient { background: linear-gradient(135deg, #FFFFFF 15%, #FEF9DB 85%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .premium-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .premium-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -15px rgba(87, 76, 0, 0.18); }
+    .dark .premium-card:hover { box-shadow: 0 20px 40px -15px rgba(254, 249, 219, 0.08); }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+  </style>
+</head>
+<body>
+
+<div id="app" class="bg-[#FEF9DB] dark:bg-[#141200] text-[#383100] dark:text-[#FEF9DB] min-h-screen font-body selection:bg-[#574C00] selection:text-[#FEF9DB] dark:selection:bg-[#FEF9DB] dark:selection:text-[#141200] transition-colors duration-500 overflow-x-hidden">
+
+  <!-- MODERN NAVIGATION -->
+  <header class="fixed w-full top-6 z-50 px-4 md:px-8 flex justify-center">
+    <nav class="glass-nav bg-[#FFFDF5]/70 dark:bg-[#1F1B00]/70 border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-full px-6 py-3.5 flex items-center justify-between w-full max-w-6xl shadow-sm transition-all">
+      
+      <!-- Logo -->
+      <a href="#hero" class="font-display font-bold text-xl tracking-tight flex items-center gap-1.5 group">
+        <span class="text-[#574C00] dark:text-[#FEF9DB] group-hover:opacity-70 transition-colors">Subalakshmi</span>
+        <span class="text-[#574C00]/60 dark:text-[#FEF9DB]/60 font-mono">S.</span>
+      </a>
+
+      <!-- Nav Links -->
+      <div class="hidden md:flex items-center space-x-8 font-display text-sm font-semibold">
+        <a href="#about" class="hover:text-[#574C00] dark:hover:opacity-70 transition-opacity">About</a>
+        <a href="#skills" class="hover:text-[#574C00] dark:hover:opacity-70 transition-opacity">Skills</a>
+        <a href="#projects" class="hover:text-[#574C00] dark:hover:opacity-70 transition-opacity">Projects</a>
+        <a href="#education" class="hover:text-[#574C00] dark:hover:opacity-70 transition-opacity">Education</a>
+        <a href="#certifications" class="hover:text-[#574C00] dark:hover:opacity-70 transition-opacity">Certifications</a>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center space-x-4">
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-[#574C00]/10 dark:hover:bg-[#FEF9DB]/10 transition-colors" aria-label="Toggle Theme">
+          <!-- Sun icon (shown in dark mode) -->
+          <svg id="icon-sun" class="w-5 h-5 text-[#FEF9DB] hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg id="icon-moon" class="w-5 h-5 text-[#574C00]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold transition-all rounded-full bg-[#574C00] text-[#FEF9DB] dark:bg-[#FEF9DB] dark:text-[#141200] hover:scale-[1.02] hover:shadow-lg">
+          Contact
+        </a>
+        <button id="menu-toggle" class="md:hidden p-2 text-[#574C00] dark:text-[#FEF9DB]" aria-label="Toggle Menu">
+          <svg id="icon-menu" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="icon-x" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#FEF9DB]/95 dark:bg-[#141200]/95 glass-nav flex-col items-center justify-center space-y-6 font-display text-2xl font-bold md:hidden">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#education" class="mobile-link">Education</a>
+    <a href="#certifications" class="mobile-link">Certifications</a>
+    <a href="#contact" class="mobile-link text-[#574C00] dark:text-[#FEF9DB]">Contact</a>
+  </div>
+
+  <!-- 1. HERO & IMPACT SECTION -->
+  <section id="hero" class="relative pt-40 pb-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: Intro & Resumes -->
+      <div class="reveal">
+        <!-- Premium Framed Profile Photo -->
+        <div class="relative mb-8 inline-block group">
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#574C00] to-[#FEF9DB] opacity-40 blur-[24px] rounded-full group-hover:scale-110 group-hover:opacity-60 transition-all duration-700 dark:opacity-20"></div>
+          <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full border-2 border-[#574C00]/30 dark:border-[#FEF9DB]/30 shadow-[0_8px_30px_rgba(87,76,0,0.15)] dark:shadow-[0_8px_30px_rgba(254,249,219,0.1)] bg-[#FFFDF5] dark:bg-[#1F1B00] p-[6px] transition-transform duration-500 group-hover:-translate-y-1.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full overflow-hidden bg-[#FEF9DB] dark:bg-[#141200]">
+              <img src="suba_prof.jpg" alt="Subalakshmi S" class="w-full h-full object-cover object-top" />
+            </div>
+          </div>
+        </div>
+
+        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-4 premium-text-gradient">
+          SUBALAKSHMI S
+        </h1>
+
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-[#574C00] dark:text-[#FEF9DB] mb-6">
+          GenAI Engineer | Full-Stack | Data Science
+        </h2>
+
+        <p class="font-body text-lg md:text-xl opacity-80 leading-relaxed mb-10 max-w-xl">
+          I build scalable, production-ready AI systems, fully local RAG pipelines, and full-stack responsive web applications. Focused on optimizing inference, reducing latency, and delivering real-world value.
+        </p>
+
+        <!-- Resume Hub -->
+        <div class="space-y-4">
+          <p class="font-mono text-sm font-bold uppercase tracking-wider opacity-60">Download Specialized Resumes</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/Subalakshmi_S_GENAI_Resume.pdf" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#574C00] text-[#FEF9DB] dark:bg-[#FEF9DB] dark:text-[#141200] font-display font-bold hover:scale-[1.02] transition-transform shadow-md">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              GenAI Resume
+            </a>
+            <a href="/Subalakshmi_S_FS_Resume.pdf" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#574C00]/25 dark:border-[#FEF9DB]/25 font-display font-bold hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] dark:hover:bg-[#FEF9DB] transition-colors">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Full-Stack Resume
+            </a>
+            <a href="/Subalakshmi_S_DS_Resume.pdf" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#574C00]/25 dark:border-[#FEF9DB]/25 font-display font-bold hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] dark:hover:bg-[#FEF9DB] transition-colors">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Data Science Resume
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Impact Highlights Card -->
+      <div class="reveal delay-100 relative">
+        <div class="absolute inset-0 bg-[#574C00] dark:bg-[#FEF9DB] opacity-10 dark:opacity-5 blur-[80px] rounded-full pointer-events-none"></div>
+        <div class="bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/20 dark:border-[#FEF9DB]/20 p-8 md:p-10 rounded-[2rem] shadow-xl relative z-10">
+          <h3 class="text-2xl font-display font-bold mb-8 flex items-center gap-3 text-[#574C00] dark:text-[#FEF9DB]">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            Impact Highlights
+          </h3>
+          <ul class="space-y-6">
+            <li class="flex gap-4">
+              <svg class="text-[#574C00] dark:text-[#FEF9DB] flex-shrink-0 mt-1 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <p class="font-body leading-relaxed text-lg">
+                <strong class="text-[#574C00] dark:text-[#FEF9DB]">National Grand Finalist</strong> at Smart India Hackathon 2025 (ETC Application).
+              </p>
+            </li>
+            <li class="flex gap-4">
+              <svg class="text-[#574C00] dark:text-[#FEF9DB] flex-shrink-0 mt-1 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <p class="font-body leading-relaxed text-lg">
+                <strong class="text-[#574C00] dark:text-[#FEF9DB]">NPTEL Elite + Gold Topper</strong> (Top 5% Nationwide) in Design, Technology &amp; Innovation.
+              </p>
+            </li>
+            <li class="flex gap-4">
+              <svg class="text-[#574C00] dark:text-[#FEF9DB] flex-shrink-0 mt-1 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="3"/><path d="M17.66 6.34A8 8 0 1 1 6.34 17.66"/></svg>
+              <p class="font-body leading-relaxed text-lg">
+                Achieved <strong class="text-[#574C00] dark:text-[#FEF9DB]">96.65% classification accuracy</strong> using a hybrid PyTorch DenseNet121 architecture.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. TECHNICAL ARSENAL (SKILLS) -->
+  <section id="skills" class="py-24 bg-[#FFFDF5] dark:bg-[#1F1B00] border-y border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-12 reveal">Technical Arsenal</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <!-- Languages -->
+        <div class="bg-[#FEF9DB] dark:bg-[#141200] p-6 rounded-2xl border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors reveal">
+          <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2 text-[#574C00] dark:text-[#FEF9DB]">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Languages
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Python (Advanced)</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">JavaScript (ES6+)</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">SQL</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Java</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">C/C++</span>
+          </div>
+        </div>
+
+        <!-- AI & ML -->
+        <div class="bg-[#FEF9DB] dark:bg-[#141200] p-6 rounded-2xl border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors reveal delay-100">
+          <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2 text-[#574C00] dark:text-[#FEF9DB]">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            AI &amp; ML
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">PyTorch</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">TensorFlow</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">LangChain</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">FAISS</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Scikit-learn</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">OpenCV</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Gemini API</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Claude API</span>
+          </div>
+        </div>
+
+        <!-- Full Stack Web -->
+        <div class="bg-[#FEF9DB] dark:bg-[#141200] p-6 rounded-2xl border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors reveal delay-200">
+          <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2 text-[#574C00] dark:text-[#FEF9DB]">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>
+            Full Stack Web
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">React.js</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Node.js</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Express</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Flask</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">FastAPI</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">PostgreSQL</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">MySQL</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Bootstrap</span>
+          </div>
+        </div>
+
+        <!-- Tools & Deploy -->
+        <div class="bg-[#FEF9DB] dark:bg-[#141200] p-6 rounded-2xl border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors reveal">
+          <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2 text-[#574C00] dark:text-[#FEF9DB]">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Tools &amp; Deploy
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Git/GitHub</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Docker</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Render</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Streamlit</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Postman</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Plotly</span>
+            <span class="px-3 py-1.5 bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/10 dark:border-[#FEF9DB]/10 rounded-lg text-sm font-medium shadow-sm">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FEATURED ENGINEERING PROJECTS -->
+  <section id="projects" class="py-24">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="mb-16 reveal">
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-4">Featured Engineering Projects</h2>
+        <p class="font-body text-lg opacity-80 max-w-2xl">A comprehensive showcase of end-to-end applications built, ranging from multimodal AI agents to fully deployed full-stack systems.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Project 1 -->
+        <article class="premium-card bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-3xl p-8 md:p-10 flex flex-col h-full reveal">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl font-bold text-[#574C00] dark:text-[#FEF9DB]">Agentic AI Health Assistant</h3>
+            <svg class="w-10 h-10 text-[#574C00]/20 dark:text-[#FEF9DB]/20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="space-y-4 font-body leading-relaxed flex-grow mb-8 opacity-90">
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Problem:</strong> Accessing reliable medical information is difficult; existing tools hallucinate or fail on multimodal queries.</p>
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Solution:</strong> Engineered an end-to-end AI healthcare assistant using Gemini and RAG architecture.</p>
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Key Features:</strong> ReAct agentic workflow via LangChain, FAISS semantic search, DenseNet121 skin disease classification.</p>
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Outcome:</strong> Achieved 96.65% classification accuracy across 23 classes.</p>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Python</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">LangChain</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">FAISS</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">PyTorch</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Flask</span>
+          </div>
+          <div class="mt-auto w-full sm:w-2/3 md:w-1/2">
+            <a href="https://github.com/suba2026/Agentic-AI-using-LLM-for-Intelligent-Health-Assessment" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
+              <svg class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View Source Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="premium-card bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-3xl p-8 md:p-10 flex flex-col h-full reveal delay-100">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl font-bold text-[#574C00] dark:text-[#FEF9DB]">ETC — Explore The City</h3>
+            <svg class="w-10 h-10 text-[#574C00]/20 dark:text-[#FEF9DB]/20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="space-y-4 font-body leading-relaxed flex-grow mb-8 opacity-90">
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Problem:</strong> Tourists struggle with discovery and routing in India where standard GPS apps lack ground reality.</p>
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Solution:</strong> A location-based tourist guidance application utilizing NavIC satellite navigation.</p>
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Key Features:</strong> Real-time routing, place discovery, PostgreSQL backend, responsive React.js UI.</p>
+            <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Outcome:</strong> Selected nationally as a Grand Finalist at Smart India Hackathon 2025.</p>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">React.js</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">PostgreSQL</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">NavIC API</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Bootstrap</span>
+          </div>
+          <div class="mt-auto w-full sm:w-2/3 md:w-1/2">
+            <a href="https://github.com/suba2026/ETC-Explore-The-City" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
+              <svg class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View Source Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 (full-width) -->
+        <article class="premium-card bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-3xl p-8 md:p-10 flex flex-col h-full reveal lg:col-span-2">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl font-bold text-[#574C00] dark:text-[#FEF9DB]">Uber Drivers Analytics Dashboard</h3>
+            <svg class="w-10 h-10 text-[#574C00]/20 dark:text-[#FEF9DB]/20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8 mb-8 opacity-90">
+            <div class="space-y-4 font-body leading-relaxed">
+              <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Problem:</strong> Raw ride data is difficult to interpret without visual tools, hiding patterns in trip timing and future demand.</p>
+              <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Solution:</strong> An interactive EDA dashboard for Uber trip data enabling dynamic exploration.</p>
+            </div>
+            <div class="space-y-4 font-body leading-relaxed">
+              <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Key Features:</strong> 7+ advanced filterable data visualization layers using Plotly, Scikit-learn predictive modeling.</p>
+              <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Outcome:</strong> Transformed tabular data into actionable insights with Linear Regression forecasting.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Streamlit</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Plotly</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Pandas</span>
+            <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Scikit-learn</span>
+          </div>
+          <div class="mt-auto w-full sm:w-2/3 md:w-1/3">
+            <a href="https://github.com/suba2026/Uber-Drivers-EDA-Dashboard" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
+              <svg class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View Source Code
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ACADEMIC & PROFESSIONAL JOURNEY -->
+  <section id="education" class="py-24 bg-[#FFFDF5] dark:bg-[#1F1B00] border-y border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+    <div class="max-w-5xl mx-auto px-6 md:px-12">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-12 reveal">Academic &amp; Professional Journey</h2>
+
+      <div class="space-y-6">
+        <!-- Experience Card -->
+        <div class="bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-2xl p-8 reveal hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <h3 class="font-display text-xl font-bold text-[#574C00] dark:text-[#FEF9DB]">Software Development Intern</h3>
+            <div class="flex items-center gap-2 text-sm font-mono text-[#574C00]/80 dark:text-[#FEF9DB]/80 mt-2 md:mt-0">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              June 2025 - July 2025
+            </div>
+          </div>
+          <p class="font-display font-bold opacity-75 mb-4">Enterprise Minds (eMinds), Puducherry</p>
+          <p class="font-body leading-relaxed opacity-85 text-sm">
+            Engineered responsive React.js UI components and integrated them with Node.js/Express REST APIs. Diagnosed and resolved cross-stack issues spanning frontend rendering and backend API responses. Tested APIs using Postman and participated in code reviews.
+          </p>
+        </div>
+
+        <!-- Education Card -->
+        <div class="bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-2xl p-8 reveal delay-100 hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <h3 class="font-display text-xl font-bold text-[#574C00] dark:text-[#FEF9DB]">B.Tech - Computer Science and Engineering</h3>
+            <div class="flex items-center gap-2 text-sm font-mono text-[#574C00]/80 dark:text-[#FEF9DB]/80 mt-2 md:mt-0">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              Dec 2022 - May 2026
+            </div>
+          </div>
+          <p class="font-display font-bold opacity-75 mb-4">Women's Engineering College, Puducherry</p>
+          <p class="font-body leading-relaxed opacity-85 text-sm">
+            <strong class="text-[#574C00] dark:text-[#FEF9DB]">CGPA: 7.96</strong><br/>
+            Coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, Computer Networks, Software Engineering, Artificial Intelligence, Machine Learning.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CREDENTIALS & CERTIFICATIONS -->
+  <section id="certifications" class="py-32 overflow-hidden relative">
+    <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#574C00] dark:bg-[#FEF9DB] opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12 reveal text-center md:text-left relative z-10">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-4">Credentials &amp; Certifications</h2>
+      <p class="font-body text-lg opacity-80">Continuous learning validated through 26 industry credentials across AI, Cloud, and Engineering.</p>
+    </div>
+
+    <!-- Track 1 (forward) -->
+    <div class="marquee-container w-full relative z-10 py-4 fade-edges">
+      <div id="track1" class="flex animate-marquee gap-6 w-max px-4"></div>
+    </div>
+
+    <!-- Track 2 (reverse) -->
+    <div class="marquee-container w-full relative z-10 py-4 fade-edges mt-2">
+      <div id="track2" class="flex animate-marquee gap-6 w-max px-4" style="animation-direction: reverse;"></div>
+    </div>
+  </section>
+
+  <!-- 6. CONTACT FOOTER -->
+  <footer id="contact" class="py-32 bg-[#FFFDF5] dark:bg-[#1F1B00] border-t border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+    <div class="max-w-3xl mx-auto px-6 text-center reveal">
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6">Let's Build Something Great</h2>
+      <p class="font-body text-lg opacity-80 mb-12 leading-relaxed">
+        Open to opportunities in AI / Software / Data Science roles. Let's discuss how my experience in shipping production systems can help your team.
+      </p>
+
+      <a href="mailto:subalakshmicse2026@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-[#574C00] text-[#FEF9DB] dark:bg-[#FEF9DB] dark:text-[#141200] font-display font-bold text-lg rounded-xl hover:scale-[1.02] transition-transform shadow-lg mb-12">
+        Say Hello
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </a>
+
+      <div class="flex justify-center items-center gap-6 mb-16">
+        <a href="mailto:subalakshmicse2026@gmail.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] transition-colors" aria-label="Email">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/subalakshmis" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] transition-colors" aria-label="LinkedIn">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/suba2026" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] transition-colors" aria-label="GitHub">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="tel:+918056936117" class="p-3 rounded-full bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] transition-colors" aria-label="Phone">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+      </div>
+
+      <p class="font-body text-sm opacity-60">
+        © 2026 Subalakshmi S. All rights reserved.<br/>
+        Active Member, IEEE Student Branch
+      </p>
+    </div>
+  </footer>
+
+</div><!-- end #app -->
+
+<script>
+  // ─── Dark mode (default: dark) ───────────────────────────────────────────────
+  let isDark = true;
+  const html = document.documentElement;
+  html.classList.add('dark');
+
+  const themeBtn  = document.getElementById('theme-toggle');
+  const iconSun   = document.getElementById('icon-sun');
+  const iconMoon  = document.getElementById('icon-moon');
+
+  function applyTheme() {
+    if (isDark) {
+      html.classList.add('dark');
+      iconSun.classList.remove('hidden');
+      iconMoon.classList.add('hidden');
+    } else {
+      html.classList.remove('dark');
+      iconSun.classList.add('hidden');
+      iconMoon.classList.remove('hidden');
+    }
+  }
+  applyTheme();
+  themeBtn.addEventListener('click', () => { isDark = !isDark; applyTheme(); });
+
+  // ─── Mobile menu ─────────────────────────────────────────────────────────────
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconMenuSvg = document.getElementById('icon-menu');
+  const iconXSvg   = document.getElementById('icon-x');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    iconMenuSvg.classList.toggle('hidden', isOpen);
+    iconXSvg.classList.toggle('hidden', !isOpen);
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      iconMenuSvg.classList.remove('hidden');
+      iconXSvg.classList.add('hidden');
+    });
+  });
+
+  // ─── Intersection Observer (reveal animations) ────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ─── Certifications marquee data ─────────────────────────────────────────────
+  const certsDatabase = [
+    { id:"01", org:"Manipal University Jaipur",   title:"Smart India Hackathon 2025 Grand Finalist",               link:"https://drive.google.com/file/d/1UG-5BR6KoP0Yyxg1YdVNKmtGiWII0jnZ/view?usp=sharing" },
+    { id:"02", org:"NPTEL / IIT Bombay",          title:"Design, Technology and Innovation (Elite + Gold)",        link:"https://drive.google.com/file/d/1jGFVepr7KWZMTH17aIKnGhGq9mLlPjvZ/view?usp=sharing" },
+    { id:"03", org:"Microsoft / Coursera",        title:"Foundations of Coding Full-Stack",                        link:"https://drive.google.com/file/d/18bpN3v7qccHrJhRePZYdAW-z_Kno09t_/view?usp=sharing" },
+    { id:"04", org:"Adobe / Coursera",            title:"Design Fundamentals with AI",                             link:"https://drive.google.com/file/d/19ShqkliOi_260NEOL6RdVv_6RL_hbbiY/view?usp=sharing" },
+    { id:"05", org:"Anthropic",                   title:"Claude Code in Action Specialization",                    link:"https://drive.google.com/file/d/1zFsObnCaBeeq2HEEbHPkOPbvhmOKytEV/view?usp=sharing" },
+    { id:"06", org:"IBM & NASSCOM",               title:"Data Science and Analytics Professional (Gold)",          link:"https://drive.google.com/file/d/1kXom3-EHFZMxYUnQIq-zpCDXzNzTvjN0/view?usp=sharing" },
+    { id:"07", org:"AWS",                         title:"Foundations of Prompt Engineering",                       link:"https://drive.google.com/file/d/1_M4J-rD0WoWhWnx0qCBedGRdOUqVcpe-/view?usp=sharing" },
+    { id:"08", org:"AWS",                         title:"Fundamentals of Prompt Engineering with Claude",          link:"https://drive.google.com/file/d/1BOfxMrOYh12qaSVWgoZqio5l3cmF26nl/view?usp=sharing" },
+    { id:"09", org:"TATA via Forage",             title:"GenAI Powered Data Analytics Job Simulation",             link:"https://drive.google.com/file/d/1lgnQOtegEHb0d58-CtQ51WsjTYi8k-ku/view?usp=sharing" },
+    { id:"10", org:"NPTEL / IIT Guwahati",        title:"Consumer Psychology (Elite Grade)",                       link:"https://drive.google.com/file/d/1OdwjpbVDlrz-ImBduRX31YwWzEtoYa5B/view?usp=sharing" },
+    { id:"11", org:"NPTEL / IIT Kharagpur",       title:"Soft Skill Development",                                  link:"https://drive.google.com/file/d/1KqH-3cJ95khp8cfiCfL3hVFKhM7QEGkG/view?usp=sharing" },
+    { id:"12", org:"Enterprise Minds",            title:"Software Development Internship",                         link:"https://drive.google.com/file/d/1xZfl2VtIJIFFtpzffi8UlH4LAXcxnks_/view?usp=sharing" },
+    { id:"13", org:"IBM / Nasscom",               title:"Data Science and Analytics Completion",                   link:"https://drive.google.com/file/d/1Y3l3-tdhv4aIiKVtGlrab7AR6tdHBtU_/view?usp=sharing" },
+    { id:"14", org:"IBM SkillsBuild",             title:"Project Management Fundamentals Badge",                   link:"https://drive.google.com/file/d/1j2aomTsKLUx7HEGHhuGF_NC3vyiPLy_n/view?usp=sharing" },
+    { id:"15", org:"IBM SkillsBuild",             title:"Cloud Computing Fundamentals Badge",                      link:"https://drive.google.com/file/d/1KJMNlVPnq_9imSR2BgW9fir4d0Zu30d8/view?usp=sharing" },
+    { id:"16", org:"IBM SkillsBuild",             title:"Job Application Essentials Badge",                        link:"https://drive.google.com/file/d/1UcSTP-66dU-dk1j4cXa3QJsm8FO6yK6U/view?usp=sharing" },
+    { id:"17", org:"Bright Tech",                 title:"Diploma in Java Programming",                             link:"https://drive.google.com/file/d/1RMhifLupPry8_I3NpqoY6ixaMiwqrLux/view?usp=sharing" },
+    { id:"18", org:"Bright Tech",                 title:"Certificate Course in C & C++ Programming",               link:"https://drive.google.com/file/d/1-0UdvfGI4V6lbiivFwkz5qhzZuP_E_tL/view?usp=sharing" },
+    { id:"19", org:"Top Skilled Academy",         title:"Front End Basics Professional Certificate",               link:"https://drive.google.com/file/d/15d5iJLRqflyo8d9KppLqD85aNQhUtPnc/view?usp=sharing" },
+    { id:"20", org:"TCS iON",                     title:"Career Edge - Young Professional",                        link:"https://drive.google.com/file/d/1CXcdmZP1PGaaa6SKxJABiN8xNnWMrPMU/view?usp=sharing" },
+    { id:"21", org:"IEEE CS",                     title:"Data Visualization Using Power BI Workshop",              link:"https://drive.google.com/file/d/1c8yZPj7vrYh_awBFfxkiUnoRvFqY-9aI/view?usp=sharing" },
+    { id:"22", org:"AIC PEC",                     title:"Foundation Course on Machine Learning Workshop",          link:"https://drive.google.com/file/d/1HP6YH-vrUxYjtbkTiicA_QXawJZ7edlr/view?usp=sharing" },
+    { id:"23", org:"Intel",                       title:"AI Essentials Workshop",                                  link:"https://drive.google.com/file/d/14dbbST2YHEBQjtiGXDVeR8DGSVrI05pJ/view?usp=sharing" },
+    { id:"24", org:"NITPY",                       title:"Cyber Security Workshop (GYANITH 2025)",                  link:"https://drive.google.com/file/d/1viOoTQ5UgRnMyqFn9W12KTDUVwCIpvrV/view?usp=sharing" },
+    { id:"25", org:"AIC-PEC",                     title:"Build & Fly Your Own Drone Workshop",                     link:"https://drive.google.com/file/d/1Vr7U8FTpSYbQP5f3A8jVVbeKcUUxs9v5/view?usp=sharing" },
+    { id:"26", org:"INSPIRE",                     title:"English Foundation & Job Readiness",                      link:"https://drive.google.com/file/d/1JlzAtZikXAMq6ZtYvMR6unkxlUxzW6Xu/view?usp=sharing" }
+  ];
+
+  function certCard(cert) {
+    return `
+      <div class="flex-shrink-0 w-[380px] flex flex-col bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-2xl p-6 shadow-sm hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors">
+        <div class="flex-grow flex flex-col h-full">
+          <h4 class="font-display text-lg font-bold text-[#574C00] dark:text-[#FEF9DB] leading-snug mb-2">${cert.title}</h4>
+          <p class="text-sm font-body opacity-70 mb-6">${cert.org}</p>
+        </div>
+        <div class="pt-4 mt-auto border-t border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+          <a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-display font-bold text-[#574C00] dark:text-[#FEF9DB] hover:opacity-80 transition-opacity">
+            Verify Credential
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>`;
+  }
+
+  const track1Certs = certsDatabase.slice(0, 13);
+  const track2Certs = certsDatabase.slice(13, 26);
+
+  const t1 = document.getElementById('track1');
+  const t2 = document.getElementById('track2');
+
+  // Triple the items for seamless infinite scroll (matching original)
+  [...track1Certs, ...track1Certs, ...track1Certs].forEach(c => t1.insertAdjacentHTML('beforeend', certCard(c)));
+  [...track2Certs, ...track2Certs, ...track2Certs].forEach(c => t2.insertAdjacentHTML('beforeend', certCard(c)));
+</script>
+
+</body>
+</html>
