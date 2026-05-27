@@ -41,40 +41,50 @@
     #mobile-menu { display: none; }
     #mobile-menu.open { display: flex; }
 
-    /* ── Mobile responsiveness fixes ── */
-    /* Prevent any horizontal overflow */
-    html, body { overflow-x: hidden; }
+    /* ── Core overflow prevention ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    #app { overflow-x: hidden; }
 
-    /* Hero name: clamp font size so it never overflows viewport */
-    @media (max-width: 480px) {
-      h1.premium-text-gradient {
-        font-size: clamp(1.6rem, 8vw, 2.5rem) !important;
-        line-height: 1.15 !important;
-        letter-spacing: -0.01em !important;
-      }
-      /* Impact highlights card: remove excess padding on small screens */
-      .bg-\[#FFFDF5\].dark\:bg-\[#1F1B00\].p-8.md\:p-10.rounded-\[2rem\] {
-        padding: 1.25rem !important;
-      }
-    }
+    /* ── Hero section: force full width containment ── */
+    #hero .max-w-7xl { max-width: 100%; }
+    #hero { overflow: hidden; }
 
-    /* Nav: prevent items from overflowing at 320–400px */
+    /* ── Nav: shrink gap on very small screens ── */
     @media (max-width: 400px) {
-      nav { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+      nav { padding-left: 0.75rem !important; padding-right: 0.75rem !important; gap: 0.5rem; }
+      #theme-toggle { padding: 0.25rem; }
     }
 
-    /* Project card GitHub buttons: full-width on mobile */
+    /* ── All section headings: prevent overflow ── */
+    h1, h2, h3 { overflow-wrap: anywhere; word-break: break-word; }
+
+    /* ── Project + section headings responsive sizing ── */
     @media (max-width: 640px) {
+      .font-display.text-3xl, .font-display.text-4xl {
+        font-size: clamp(1.4rem, 6vw, 1.875rem) !important;
+      }
+      .font-display.text-2xl {
+        font-size: clamp(1.1rem, 5vw, 1.5rem) !important;
+      }
+      /* Project card buttons: full width */
       article .mt-auto { width: 100% !important; }
-      article .mt-auto a { width: 100%; }
+      article .mt-auto a { width: 100% !important; display: flex; justify-content: center; }
+      /* Impact highlights card padding */
+      .rounded-\[2rem\] { padding: 1.25rem !important; }
     }
 
-    /* Ensure premium-card titles don't overflow on small screens */
-    .font-display.text-2xl.font-bold { overflow-wrap: break-word; word-break: break-word; }
+    /* ── Contact section heading ── */
+    @media (max-width: 640px) {
+      #contact h2 { font-size: clamp(1.6rem, 7vw, 2.5rem) !important; }
+    }
 
-    /* Make the hero body text smaller on very small screens */
-    @media (max-width: 400px) {
-      .font-body.text-lg.md\:text-xl { font-size: 1rem !important; }
+    /* ── Resume buttons: wrap gracefully on mobile ── */
+    @media (max-width: 480px) {
+      .flex.flex-col.sm\:flex-row.flex-wrap.gap-3 a {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -146,15 +156,15 @@
           </div>
         </div>
 
-        <h1 class="font-display text-[2rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-4 premium-text-gradient break-words hyphens-none" style="word-break: keep-all; overflow-wrap: break-word;">
+        <h1 class="font-display font-extrabold tracking-tight mb-4 premium-text-gradient" style="font-size: clamp(1.75rem, 9vw, 4.5rem); line-height: 1.1; overflow-wrap: anywhere; word-break: break-word;">
           SUBALAKSHMI S
         </h1>
 
-        <h2 class="font-display text-lg sm:text-2xl md:text-3xl font-bold text-[#574C00] dark:text-[#FEF9DB] mb-6">
+        <h2 class="font-display font-bold text-[#574C00] dark:text-[#FEF9DB] mb-6" style="font-size: clamp(1rem, 4.5vw, 1.875rem); line-height: 1.3; overflow-wrap: anywhere;">
           GenAI Engineer | Full-Stack | Data Science
         </h2>
 
-        <p class="font-body text-lg md:text-xl opacity-80 leading-relaxed mb-10 max-w-xl">
+        <p class="font-body opacity-80 leading-relaxed mb-10 max-w-xl" style="font-size: clamp(0.9rem, 4vw, 1.125rem);">
           I build scalable, production-ready AI systems, fully local RAG pipelines, and full-stack responsive web applications. Focused on optimizing inference, reducing latency, and delivering real-world value.
         </p>
 
