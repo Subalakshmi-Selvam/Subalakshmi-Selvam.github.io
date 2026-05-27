@@ -40,6 +40,42 @@
     /* Mobile menu */
     #mobile-menu { display: none; }
     #mobile-menu.open { display: flex; }
+
+    /* ── Mobile responsiveness fixes ── */
+    /* Prevent any horizontal overflow */
+    html, body { overflow-x: hidden; }
+
+    /* Hero name: clamp font size so it never overflows viewport */
+    @media (max-width: 480px) {
+      h1.premium-text-gradient {
+        font-size: clamp(1.6rem, 8vw, 2.5rem) !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.01em !important;
+      }
+      /* Impact highlights card: remove excess padding on small screens */
+      .bg-\[#FFFDF5\].dark\:bg-\[#1F1B00\].p-8.md\:p-10.rounded-\[2rem\] {
+        padding: 1.25rem !important;
+      }
+    }
+
+    /* Nav: prevent items from overflowing at 320–400px */
+    @media (max-width: 400px) {
+      nav { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+    }
+
+    /* Project card GitHub buttons: full-width on mobile */
+    @media (max-width: 640px) {
+      article .mt-auto { width: 100% !important; }
+      article .mt-auto a { width: 100%; }
+    }
+
+    /* Ensure premium-card titles don't overflow on small screens */
+    .font-display.text-2xl.font-bold { overflow-wrap: break-word; word-break: break-word; }
+
+    /* Make the hero body text smaller on very small screens */
+    @media (max-width: 400px) {
+      .font-body.text-lg.md\:text-xl { font-size: 1rem !important; }
+    }
   </style>
 </head>
 <body>
@@ -51,9 +87,9 @@
     <nav class="glass-nav bg-[#FFFDF5]/70 dark:bg-[#1F1B00]/70 border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-full px-6 py-3.5 flex items-center justify-between w-full max-w-6xl shadow-sm transition-all">
       
       <!-- Logo -->
-      <a href="#hero" class="font-display font-bold text-xl tracking-tight flex items-center gap-1.5 group">
+      <a href="#hero" class="font-display font-bold text-base sm:text-xl tracking-tight flex items-center gap-1.5 group shrink-0 mr-2">
         <span class="text-[#574C00] dark:text-[#FEF9DB] group-hover:opacity-70 transition-colors">Subalakshmi</span>
-        <span class="text-[#574C00]/60 dark:text-[#FEF9DB]/60 font-mono">S</span>
+        <span class="text-[#574C00]/60 dark:text-[#FEF9DB]/60 font-mono">S.</span>
       </a>
 
       <!-- Nav Links -->
@@ -95,26 +131,26 @@
   </div>
 
   <!-- 1. HERO & IMPACT SECTION -->
-  <section id="hero" class="relative pt-40 pb-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center">
+  <section id="hero" class="relative pt-32 pb-16 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 w-full grid lg:grid-cols-2 gap-10 items-center min-w-0">
 
       <!-- Left: Intro & Resumes -->
-      <div class="reveal">
+      <div class="reveal min-w-0 w-full">
         <!-- Premium Framed Profile Photo -->
         <div class="relative mb-8 inline-block group">
           <div class="absolute inset-0 bg-gradient-to-tr from-[#574C00] to-[#FEF9DB] opacity-40 blur-[24px] rounded-full group-hover:scale-110 group-hover:opacity-60 transition-all duration-700 dark:opacity-20"></div>
           <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full border-2 border-[#574C00]/30 dark:border-[#FEF9DB]/30 shadow-[0_8px_30px_rgba(87,76,0,0.15)] dark:shadow-[0_8px_30px_rgba(254,249,219,0.1)] bg-[#FFFDF5] dark:bg-[#1F1B00] p-[6px] transition-transform duration-500 group-hover:-translate-y-1.5 flex items-center justify-center">
             <div class="w-full h-full rounded-full overflow-hidden bg-[#FEF9DB] dark:bg-[#141200]">
-              <img src="suba-prof-pic.jpeg" alt="SUBALAKSHMI S" class="w-full h-full object-cover object-top" />
+              <img src="suba_prof.jpg" alt="Subalakshmi S" class="w-full h-full object-cover object-top" />
             </div>
           </div>
         </div>
 
-        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-4 premium-text-gradient">
+        <h1 class="font-display text-[2rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-4 premium-text-gradient break-words hyphens-none" style="word-break: keep-all; overflow-wrap: break-word;">
           SUBALAKSHMI S
         </h1>
 
-        <h2 class="font-display text-2xl md:text-3xl font-bold text-[#574C00] dark:text-[#FEF9DB] mb-6">
+        <h2 class="font-display text-lg sm:text-2xl md:text-3xl font-bold text-[#574C00] dark:text-[#FEF9DB] mb-6">
           GenAI Engineer | Full-Stack | Data Science
         </h2>
 
@@ -125,16 +161,16 @@
         <!-- Resume Hub -->
         <div class="space-y-4">
           <p class="font-mono text-sm font-bold uppercase tracking-wider opacity-60">Download Specialized Resumes</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="https://drive.google.com/file/d/1cwZf7BLJA24t4tBz-sEoz2iO4eZlvRT7/view?usp=sharing" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#574C00] text-[#FEF9DB] dark:bg-[#FEF9DB] dark:text-[#141200] font-display font-bold hover:scale-[1.02] transition-transform shadow-md">
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+            <a href="/Subalakshmi_S_GENAI_Resume.pdf" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#574C00] text-[#FEF9DB] dark:bg-[#FEF9DB] dark:text-[#141200] font-display font-bold hover:scale-[1.02] transition-transform shadow-md">
               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               GenAI Resume
             </a>
-            <a href="https://drive.google.com/file/d/135pF4WN_laWieTRJFMCTy2j10A_HbHGy/view?usp=sharing" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#574C00]/25 dark:border-[#FEF9DB]/25 font-display font-bold hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] dark:hover:bg-[#FEF9DB] transition-colors">
+            <a href="/Subalakshmi_S_FS_Resume.pdf" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#574C00]/25 dark:border-[#FEF9DB]/25 font-display font-bold hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] dark:hover:bg-[#FEF9DB] transition-colors">
               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Full-Stack Resume
             </a>
-            <a href="https://drive.google.com/file/d/1j7SFrHfW6O0n456cBNBj0cGO5qvrd72n/view?usp=sharing" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#574C00]/25 dark:border-[#FEF9DB]/25 font-display font-bold hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] dark:hover:bg-[#FEF9DB] transition-colors">
+            <a href="/Subalakshmi_S_DS_Resume.pdf" download target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#574C00]/25 dark:border-[#FEF9DB]/25 font-display font-bold hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] dark:hover:bg-[#FEF9DB] transition-colors">
               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Data Science Resume
             </a>
@@ -143,7 +179,7 @@
       </div>
 
       <!-- Right: Impact Highlights Card -->
-      <div class="reveal delay-100 relative">
+      <div class="reveal delay-100 relative min-w-0 w-full">
         <div class="absolute inset-0 bg-[#574C00] dark:bg-[#FEF9DB] opacity-10 dark:opacity-5 blur-[80px] rounded-full pointer-events-none"></div>
         <div class="bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/20 dark:border-[#FEF9DB]/20 p-8 md:p-10 rounded-[2rem] shadow-xl relative z-10">
           <h3 class="text-2xl font-display font-bold mb-8 flex items-center gap-3 text-[#574C00] dark:text-[#FEF9DB]">
@@ -177,11 +213,11 @@
   </section>
 
   <!-- 2. TECHNICAL ARSENAL (SKILLS) -->
-  <section id="skills" class="py-24 bg-[#FFFDF5] dark:bg-[#1F1B00] border-y border-[#574C00]/15 dark:border-[#FEF9DB]/15">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-12 reveal">Technical Arsenal</h2>
+  <section id="skills" class="py-16 md:py-24 bg-[#FFFDF5] dark:bg-[#1F1B00] border-y border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-10 reveal">Technical Arsenal</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
         <!-- Languages -->
         <div class="bg-[#FEF9DB] dark:bg-[#141200] p-6 rounded-2xl border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors reveal">
           <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2 text-[#574C00] dark:text-[#FEF9DB]">
@@ -254,17 +290,17 @@
   </section>
 
   <!-- 3. FEATURED ENGINEERING PROJECTS -->
-  <section id="projects" class="py-24">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-      <div class="mb-16 reveal">
+  <section id="projects" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      <div class="mb-12 reveal">
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-4">Featured Engineering Projects</h2>
         <p class="font-body text-lg opacity-80 max-w-2xl">A comprehensive showcase of end-to-end applications built, ranging from multimodal AI agents to fully deployed full-stack systems.</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <!-- Project 1 -->
-        <article class="premium-card bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-3xl p-8 md:p-10 flex flex-col h-full reveal">
+        <article class="premium-card bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-3xl p-6 md:p-10 flex flex-col h-full reveal">
           <div class="flex justify-between items-start mb-6">
             <h3 class="font-display text-2xl font-bold text-[#574C00] dark:text-[#FEF9DB]">Agentic AI Health Assistant</h3>
             <svg class="w-10 h-10 text-[#574C00]/20 dark:text-[#FEF9DB]/20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -283,7 +319,7 @@
             <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Flask</span>
           </div>
           <div class="mt-auto w-full sm:w-2/3 md:w-1/2">
-            <a href="https://github.com/Subalakshmi-Selvam/Agentic-AI-using-LLM-for-Intelligent-Health-Assessment" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
+            <a href="https://github.com/suba2026/Agentic-AI-using-LLM-for-Intelligent-Health-Assessment" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
               <svg class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               View Source Code
             </a>
@@ -309,7 +345,7 @@
             <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Bootstrap</span>
           </div>
           <div class="mt-auto w-full sm:w-2/3 md:w-1/2">
-            <a href="https://github.com/Subalakshmi-Selvam/Explore-The-City-App" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
+            <a href="https://github.com/suba2026/ETC-Explore-The-City" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
               <svg class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               View Source Code
             </a>
@@ -322,7 +358,7 @@
             <h3 class="font-display text-2xl font-bold text-[#574C00] dark:text-[#FEF9DB]">Uber Drivers Analytics Dashboard</h3>
             <svg class="w-10 h-10 text-[#574C00]/20 dark:text-[#FEF9DB]/20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           </div>
-          <div class="grid md:grid-cols-2 gap-8 mb-8 opacity-90">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 opacity-90">
             <div class="space-y-4 font-body leading-relaxed">
               <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Problem:</strong> Raw ride data is difficult to interpret without visual tools, hiding patterns in trip timing and future demand.</p>
               <p><strong class="text-[#574C00] dark:text-[#FEF9DB]">Solution:</strong> An interactive EDA dashboard for Uber trip data enabling dynamic exploration.</p>
@@ -338,8 +374,8 @@
             <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Pandas</span>
             <span class="px-3 py-1 bg-[#FEF9DB] dark:bg-[#141200] text-xs font-mono font-bold rounded-lg border border-[#574C00]/15 dark:border-[#FEF9DB]/15">Scikit-learn</span>
           </div>
-          <div class="mt-auto w-full sm:w-2/3 md:w-1/3">
-            <a href="https://github.com/Subalakshmi-Selvam/Uber-Drivers-EDA-Dashboard" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
+          <div class="mt-auto w-full sm:w-auto">
+            <a href="https://github.com/suba2026/Uber-Drivers-EDA-Dashboard" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 rounded-xl border-2 border-[#574C00]/20 dark:border-[#FEF9DB]/20 font-display font-bold flex items-center justify-center gap-2 hover:bg-[#574C00] hover:text-[#FEF9DB] dark:hover:bg-[#FEF9DB] dark:hover:text-[#141200] transition-all duration-300 text-[#574C00] dark:text-[#FEF9DB]">
               <svg class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               View Source Code
             </a>
@@ -351,8 +387,8 @@
   </section>
 
   <!-- 4. ACADEMIC & PROFESSIONAL JOURNEY -->
-  <section id="education" class="py-24 bg-[#FFFDF5] dark:bg-[#1F1B00] border-y border-[#574C00]/15 dark:border-[#FEF9DB]/15">
-    <div class="max-w-5xl mx-auto px-6 md:px-12">
+  <section id="education" class="py-16 md:py-24 bg-[#FFFDF5] dark:bg-[#1F1B00] border-y border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 md:px-12">
       <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-12 reveal">Academic &amp; Professional Journey</h2>
 
       <div class="space-y-6">
@@ -394,7 +430,7 @@
   <section id="certifications" class="py-32 overflow-hidden relative">
     <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#574C00] dark:bg-[#FEF9DB] opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12 reveal text-center md:text-left relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-12 reveal text-center relative z-10">
       <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-4">Credentials &amp; Certifications</h2>
       <p class="font-body text-lg opacity-80">Continuous learning validated through 26 industry credentials across AI, Cloud, and Engineering.</p>
     </div>
@@ -411,9 +447,9 @@
   </section>
 
   <!-- 6. CONTACT FOOTER -->
-  <footer id="contact" class="py-32 bg-[#FFFDF5] dark:bg-[#1F1B00] border-t border-[#574C00]/15 dark:border-[#FEF9DB]/15">
-    <div class="max-w-3xl mx-auto px-6 text-center reveal">
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6">Let's Build Something Great</h2>
+  <footer id="contact" class="py-20 md:py-32 bg-[#FFFDF5] dark:bg-[#1F1B00] border-t border-[#574C00]/15 dark:border-[#FEF9DB]/15">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center reveal">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">Let's Build Something Great</h2>
       <p class="font-body text-lg opacity-80 mb-12 leading-relaxed">
         Open to opportunities in AI / Software / Data Science roles. Let's discuss how my experience in shipping production systems can help your team.
       </p>
@@ -423,7 +459,7 @@
         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </a>
 
-      <div class="flex justify-center items-center gap-6 mb-16">
+      <div class="flex flex-wrap justify-center items-center gap-4 mb-16">
         <a href="mailto:subalakshmicse2026@gmail.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-[#FEF9DB] dark:bg-[#141200] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 hover:border-[#574C00] dark:hover:border-[#FEF9DB] hover:text-[#574C00] dark:hover:text-[#141200] transition-colors" aria-label="Email">
           <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
@@ -530,7 +566,7 @@
 
   function certCard(cert) {
     return `
-      <div class="flex-shrink-0 w-[380px] flex flex-col bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-2xl p-6 shadow-sm hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors">
+      <div class="flex-shrink-0 w-[280px] sm:w-[340px] flex flex-col bg-[#FFFDF5] dark:bg-[#1F1B00] border border-[#574C00]/15 dark:border-[#FEF9DB]/15 rounded-2xl p-5 shadow-sm hover:border-[#574C00] dark:hover:border-[#FEF9DB] transition-colors">
         <div class="flex-grow flex flex-col h-full">
           <h4 class="font-display text-lg font-bold text-[#574C00] dark:text-[#FEF9DB] leading-snug mb-2">${cert.title}</h4>
           <p class="text-sm font-body opacity-70 mb-6">${cert.org}</p>
